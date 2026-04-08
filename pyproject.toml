@@ -1,0 +1,39 @@
+[project]
+name = "outline-dl"
+version = "0.1.0"
+description = "Download unit outline PDFs from Curtin University's LITEC system"
+readme = "README.md"
+authors = [
+    { name = "Michael Borck", email = "michael@borck.dev" }
+]
+license = "MIT"
+requires-python = ">=3.13"
+dependencies = [
+    "playwright",
+    "python-dotenv",
+]
+
+[dependency-groups]
+dev = [
+    "ruff",
+    "mypy",
+    "pytest",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.11,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 99
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+
+[project.scripts]
+outline-dl = "outline_dl.__main__:main"
