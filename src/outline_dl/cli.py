@@ -39,9 +39,9 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--headless",
+        "--visible",
         action="store_true",
-        help="Run browser in headless mode",
+        help="Show the browser window (default: headless)",
     )
     parser.add_argument(
         "--timeout",

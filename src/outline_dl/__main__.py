@@ -23,7 +23,7 @@ def main() -> None:
     print(f"Output directory: {args.output_dir}")
 
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(headless=args.headless)
+        browser = pw.chromium.launch(headless=not args.visible)
         context = browser.new_context(accept_downloads=True)
         page = context.new_page()
 
