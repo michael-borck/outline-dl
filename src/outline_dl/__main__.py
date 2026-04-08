@@ -28,7 +28,10 @@ def main() -> None:
         page = context.new_page()
 
         login(page, username, password, timeout=args.timeout)
-        results = download_outlines(page, unit_codes, args.output_dir, timeout=args.timeout)
+        results = download_outlines(
+            page, unit_codes, args.output_dir,
+            campus=args.campus, timeout=args.timeout,
+        )
 
         browser.close()
 

@@ -30,6 +30,15 @@ def build_parser() -> argparse.ArgumentParser:
         help="Output directory for PDFs (default: ./outlines/)",
     )
     parser.add_argument(
+        "-c",
+        "--campus",
+        default="Bentley Perth Campus",
+        help=(
+            "Campus to filter availabilities by (default: 'Bentley Perth Campus'). "
+            "Use 'all' to download for all campuses."
+        ),
+    )
+    parser.add_argument(
         "--headless",
         action="store_true",
         help="Run browser in headless mode",
