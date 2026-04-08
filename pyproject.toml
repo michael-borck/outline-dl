@@ -1,6 +1,6 @@
 [project]
 name = "outline-dl"
-version = "0.1.1"
+version = "0.2.0"
 description = "Download unit outline PDFs from Curtin University's LITEC system"
 readme = "README.md"
 authors = [
