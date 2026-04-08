@@ -1,13 +1,24 @@
 """CLI argument parsing."""
 
 import argparse
+from importlib.metadata import version
 from pathlib import Path
+
+REPO_URL = "https://github.com/michael-borck/outline-dl"
 
 
 def build_parser() -> argparse.ArgumentParser:
+    ver = version("outline-dl")
     parser = argparse.ArgumentParser(
         prog="outline-dl",
         description="Download unit outline PDFs from Curtin LITEC",
+        epilog=f"Project: {REPO_URL}",
+    )
+    parser.add_argument(
+        "-V",
+        "--version",
+        action="version",
+        version=f"%(prog)s {ver} — {REPO_URL}",
     )
     parser.add_argument(
         "units",
