@@ -54,10 +54,10 @@ def resolve_unit_codes(
         # Support both newline-separated and comma-separated
         raw_codes = re.split(r"[,\n]+", text)
     else:
-        user_input = input("Enter unit codes (comma-separated): ").strip()
+        user_input = input("Enter unit codes (space or comma-separated): ").strip()
         if not user_input:
             raise SystemExit("Error: no unit codes provided.")
-        raw_codes = user_input.split(",")
+        raw_codes = re.split(r"[,\s]+", user_input)
 
     codes = []
     for raw in raw_codes:

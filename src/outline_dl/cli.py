@@ -39,6 +39,11 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Re-download even if the PDF already exists in the output directory",
+    )
+    parser.add_argument(
         "--visible",
         action="store_true",
         help="Show the browser window (default: headless)",

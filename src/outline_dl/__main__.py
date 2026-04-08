@@ -36,6 +36,9 @@ def main() -> None:
     username, password = resolve_credentials(args.username, args.password)
     unit_codes = resolve_unit_codes(args.units or None, args.file)
 
+    # Interactive mode: when no unit codes were given on CLI or via file
+    interactive = not args.units and not args.file
+
     print(f"Will download outlines for: {', '.join(unit_codes)}")
     print(f"Output directory: {args.output_dir}")
 
@@ -47,7 +50,8 @@ def main() -> None:
         login(page, username, password, timeout=args.timeout)
         results = download_outlines(
             page, unit_codes, args.output_dir,
-            campus=args.campus, timeout=args.timeout,
+            campus=args.campus, overwrite=args.overwrite,
+            interactive=interactive, timeout=args.timeout,
         )
 
         browser.close()
