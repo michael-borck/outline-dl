@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
 
@@ -11,8 +13,23 @@ from outline_dl.config import resolve_credentials, resolve_unit_codes
 from outline_dl.downloader import download_outlines
 
 
-def main() -> None:
+def _load_env() -> None:
+    """Load .env from ~/.config/outline-dl/, then ~/.outline-dl.env, then CWD."""
+    candidates = [
+        Path.home() / ".config" / "outline-dl" / ".env",
+        Path.home() / ".outline-dl.env",
+        Path.cwd() / ".env",
+    ]
+    for path in candidates:
+        if path.is_file():
+            load_dotenv(path)
+            return
+    # Fall through — env vars may still be set directly
     load_dotenv()
+
+
+def main() -> None:
+    _load_env()
     parser = build_parser()
     args = parser.parse_args()
 
